@@ -23,8 +23,17 @@ const Spacing: SpacingType = {
     window.addEventListener('keydown', keyDownHandler);
     window.addEventListener('keyup', keyUpHandler);
     window.addEventListener('mousemove', cursorMovedHandler);
+    document.addEventListener('mouseleave', function() {
+      mouseLeaveHandler();
+    })
   },
 };
+
+// 弹出terminal时，keyup没触发，所以加了该方法
+function mouseLeaveHandler() {
+  active = false;
+  cleanUp();
+}
 
 function keyDownHandler(e: KeyboardEvent) {
   if (delayedDismiss) {
